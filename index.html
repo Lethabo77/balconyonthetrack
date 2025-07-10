@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>The Balcony on the Track</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --main-red: #e10600;
+      --black: #000;
+      --white: #fff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Michroma', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+    }
+
+    /* HEADER NAV */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      z-index: 2000;
+    }
+
+    .logo img {
+  height: 100px; /* or try 120px if you want it even bigger */
+}
+
+
+    .subheading {
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+
+    .subheading a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .subheading a:hover {
+      color: var(--main-red);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      transition: max-height 0.3s ease;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--main-red);
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        overflow: hidden;
+        max-height: 0;
+      }
+
+      nav.show {
+        max-height: 500px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+    }
+
+    main {
+      padding-top: 10rem;
+    }
+
+    /* HERO */
+    .hero {
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero .overlay {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero .overlay h1 {
+      font-size: 3.5rem;
+      color: var(--main-red);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .hero .overlay p {
+      max-width: 700px;
+      font-size: 1.2rem;
+      color: var(--white);
+    }
+
+    .cta-buttons {
+      margin-top: 2rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      padding: 0.8rem 1.5rem;
+      font-size: 1rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-radius: 5px;
+      background-color: var(--white);
+      color: var(--black);
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #ccc;
+    }
+
+    @media (max-width: 480px) {
+      .hero .overlay h1 {
+        font-size: 1.8rem !important;
+      }
+    }
+
+    /* WHATSAPP BUTTON */
+    #whatsapp-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 10000;
+      text-decoration: none;
+    }
+
+    #whatsapp-chat:hover {
+      transform: scale(1.1);
+    }
+
+    /* FOOTER */
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem 1rem;
+    }
+
+    .footer-icons {
+      margin-bottom: 1rem;
+    }
+
+    .footer-icons a {
+      color: var(--white);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: var(--main-red);
+    }
+
+    footer p {
+      color: #aaa;
+      font-size: 0.9rem;
+    }
+ 
+  </style>
+</head>
+
+<body>
+  <header>
+    <button class="menu-toggle" onclick="document.getElementById('nav-links').classList.toggle('show')">
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+    <div class="logo">
+      <img src="SVG logo TB.png" alt="The Balcony On The Track" />
+    </div>
+    <div class="subheading">
+      <a href="https://maps.app.goo.gl/X2X6CGkxuhCrH4QU9" target="_blank">
+        51 Kyalami Boulevard, Kyalami Park, Midrand, 1684
+      </a>
+    </div>
+    <nav id="nav-links">
+      <a href="index.html" class="active">Home</a>
+      <a href="about.html">About</a>
+      <a href="balcony.html">Balcony</a>
+      <a href="track.html">Track</a>
+      <a href="booking.html">Booking</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <video autoplay muted loop playsinline>
+        <source src="mainhomevideo.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <div class="overlay">
+        <h1>The Balcony on the Track</h1>
+        <p>Where world-class entertainment meets motorsport elegance.</p>
+        <div class="cta-buttons">
+          <a href="balcony.html" class="btn">The Balcony</a>
+          <a href="track.html" class="btn">The Track</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <a href="https://wa.me/+27123456789" target="_blank" id="whatsapp-chat" title="Chat with us on WhatsApp">
+    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+  </a>
+
+  <footer>
+    <div class="footer-icons">
+      <a href="https://www.instagram.com/balconyonthetrack?igsh=cHNsY2kyM3V3dmVj&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.facebook.com/share/1B31THTB2M/?mibextid=wwXIfr"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="mailto:info@balconyonthetrack.co.za"><ion-icon name="mail-outline"></ion-icon></a>
+      <a href="#"><ion-icon name="call-outline"></ion-icon></a>
+    </div>
+    <p>&copy; 2025 The Balcony on the Track. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+

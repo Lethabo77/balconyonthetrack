@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The Track | The Balcony on the Track</title>
+
+  <!-- Google Fonts -->
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Michroma&display=swap"></noscript>
+
+  <!-- Ionicons -->
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --main-red: #e10600;
+      --white: #fff;
+      --black: #000;
+      --near-black: #111;
+      --icon-color: #d7d7d7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Michroma', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER */
+    header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.logo img {
+  height: 100px;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.subheading a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.subheading a:hover {
+  color: var(--main-red);
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: max-height 0.3s ease;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--main-red);
+  text-decoration: underline;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  z-index: 2000;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  nav.show {
+    max-height: 500px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+}
+
+main {
+  padding-top: 10rem; /* Add margin below fixed nav */
+}
+
+
+    @keyframes slideInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(60px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* HERO SECTION */
+    .hero-track {
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      border-radius: 12px;
+      margin-bottom: 3rem;
+      color: var(--main-red);
+      font-weight: 700;
+      text-transform: uppercase;
+      font-size: 2.8rem;
+      letter-spacing: 3px;
+      text-shadow: 0 0 10px var(--main-red);
+    }
+
+    .hero-track h1 {
+      margin-bottom: 1rem;
+    }
+
+    .hero-track p {
+      color: var(--white);
+      font-size: 1.3rem;
+      max-width: 700px;
+      font-weight: 500;
+      text-shadow: 0 0 5px #000;
+    }
+
+    /* FEATURES */
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto 3rem;
+    }
+
+    .feature {
+      background: var(--near-black);
+      border-left: 5px solid var(--main-red);
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 0 10px rgba(225, 12, 12, 0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      transition: box-shadow 0.3s ease, transform 0.3s ease;
+      cursor: default;
+    }
+
+    .feature:hover {
+      box-shadow: 0 0 20px var(--main-red);
+      transform: scale(1.05);
+    }
+
+    .feature ion-icon {
+      font-size: 3.5rem;
+      color: var(--icon-color);
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+    }
+
+    .feature p {
+      font-weight: 500;
+      color: var(--white);
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    /* GALLERY */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .gallery-grid img {
+      width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(225, 12, 12, 0.4);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
+    }
+
+    .gallery-grid img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px var(--main-red);
+    }
+
+    /* FOOTER */
+    footer {
+      background: var(--black);
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: auto;
+      border-top: 1px solid var(--main-red);
+    }
+
+    .footer-icons {
+      margin-bottom: 1rem;
+    }
+
+    .footer-icons a {
+      color: var(--icon-color);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: var(--main-red);
+    }
+
+    footer p {
+      color: var(--white);
+      font-size: 0.9rem;
+    }
+
+    .about-modern {
+      background: radial-gradient(ellipse at center, #111 0%, #000 100%);
+      padding: 4rem 2rem;
+      margin: 4rem auto;
+      border-radius: 20px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 50px rgba(225, 6, 0, 0.15);
+      max-width: 1000px;
+    }
+
+    .about-modern::before {
+      content: "";
+      position: absolute;
+      top: -20%;
+      left: -20%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at center, rgba(225, 6, 0, 0.05), transparent 70%);
+      animation: rotateGlow 30s linear infinite;
+      z-index: 0;
+    }
+
+    @keyframes rotateGlow {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .about-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .about-content h2 {
+      font-size: 2.7rem;
+      color: var(--main-red);
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 1.5rem;
+      text-shadow: 0 0 15px rgba(225, 6, 0, 0.4);
+    }
+
+    .about-content p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--white);
+      font-weight: 400;
+      text-shadow: 0 0 5px #000;
+    }
+
+    @media (max-width: 480px) {
+      /* Reduce general body text */
+      body {
+        font-size: 14px;
+      }
+
+      /* Adjust hero section size and text */
+      .hero-track {
+        height: 45vh;
+        font-size: 1.6rem;
+        padding: 1rem 1.5rem;
+        letter-spacing: 1.5px;
+        margin-bottom: 2rem;
+      }
+
+      .hero-track h1 {
+        font-size: 1.8rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .hero-track p {
+        font-size: 1rem;
+        max-width: 90vw;
+        margin: 0 auto;
+      }
+
+      /* Features headings and paragraphs */
+      .feature h3 {
+        font-size: 1.2rem;
+      }
+
+      .feature p {
+        font-size: 0.9rem;
+      }
+
+      /* Subheading in header */
+      .subheading {
+        font-size: 0.85rem;
+      }
+
+      /* Navigation links */
+      nav a {
+        font-size: 0.9rem;
+      }
+
+      /* Footer paragraph */
+      footer p {
+        font-size: 0.75rem;
+      }
+
+      /* About section heading and paragraph */
+      .about-content h2 {
+        font-size: 2rem;
+      }
+
+      .about-content p {
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('show')">
+    <ion-icon name="menu-outline"></ion-icon>
+  </button>
+  <div class="logo">
+    <img src="SVG logo TB.png" alt="The Balcony On The Track">
+  </div>
+  <div class="subheading">
+    <a href="https://maps.app.goo.gl/X2X6CGkxuhCrH4QU9" target="_blank">
+      51 Kyalami Boulevard, Kyalami Park, Midrand, 1684
+    </a>
+  </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="balcony.html">Balcony</a>
+    <a href="track.html" class="active">Track</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+
+  <main>
+    <section class="hero-track">
+      <h1>Feel the Rush. Master the Circuit.</h1>
+      <p>
+        South Africa’s first race simulator arcade of its kind.
+      </p>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+      <div class="feature">
+        <ion-icon name="speedometer"></ion-icon>
+        <h3>Realistic Racing</h3>
+        <p>Experience hyper-realistic physics and feedback that mimics real F1 racing.</p>
+      </div>
+      <div class="feature">
+        <ion-icon name="game-controller"></ion-icon>
+        <h3>State-of-the-Art Simulators</h3>
+        <p>Top-of-the-line simulators with full cockpit immersion and advanced controls.</p>
+      </div>
+      <div class="feature">
+        <ion-icon name="people"></ion-icon>
+        <h3>Competitive Events</h3>
+        <p>Join leagues and competitions designed for racers of all skill levels.</p>
+      </div>
+      <div class="feature">
+        <ion-icon name="trophy"></ion-icon>
+        <h3>Prizes & Rewards</h3>
+        <p>Win trophies, prizes, and exclusive track day experiences.</p>
+      </div>
+    </section>
+
+    <section class="about-modern">
+      <div class="about-content">
+        <h2>About The Track</h2>
+        <p>
+          The Track redefines what it means to race. South Africa’s first racing simulator arcade is built to thrill — a space where cutting-edge engineering meets pure passion. Whether you’re chasing lap times or casual fun, we’ve built an environment where every second feels real.
+        </p>
+      </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="gallery-grid">
+      <img src="The Track - Arcade V3_000.png" alt="F1 Simulator cockpit view" />
+      <img src="The Track - Arcade V2_000.png" alt="Racer using simulation controls" />
+      <img src="The Track - Arcade V1_000.png" alt="Multiple simulators setup" />
+      <img src="The Track - DJ Booth  V1.png" alt="Live race simulation event" />
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-icons">
+      <a href="https://www.instagram.com/balconyonthetrack?igsh=cHNsY2kyM3V3dmVj&utm_source=qr" aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.facebook.com/share/1B31THTB2M/?mibextid=wwXIfr" aria-label="Facebook"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="mailto:info@balconyonthetrack.co.za" aria-label="Email"><ion-icon name="mail-outline"></ion-icon></a>
+      <a href="#" aria-label="Call"><ion-icon name="call-outline"></ion-icon></a>
+    </div>
+    <p>&copy; 2025 The Balcony on the Track. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function toggleMenu() {
+      const nav = document.getElementById('nav-links');
+      nav.classList.toggle('show');
+    }
+
+    function highlightLink(el) {
+      const links = document.querySelectorAll('#nav-links a');
+      links.forEach(link => link.classList.remove('active'));
+      el.classList.add('active');
+      if (window.innerWidth <= 768) {
+        document.getElementById('nav-links').classList.remove('show');
+      }
+    }
+  </script>
+
+</body>
+
+</html>
+
+
+
+

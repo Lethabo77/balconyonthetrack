@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>About | The Balcony on the Track</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma:wght@400;600;700&display=swap" rel="stylesheet" />
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --red: #e10600;
+      --black: #000;
+      --white: #fff;
+      --gray: #d7d7d7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Michroma', sans-serif;
+      background: var(--black);
+      color: var(--white);
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+   header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(5px);
+  border-bottom: 1px solid var(--red);
+}
+
+.logo img {
+  height: 100px;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.subheading a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.subheading a:hover {
+  color: var(--red);
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: max-height 0.3s ease;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--red);
+  text-decoration: underline;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  z-index: 2000;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  nav.show {
+    max-height: 500px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+}
+
+main {
+  padding-top: 10rem;
+}
+
+
+    h1, h2 {
+      text-align: center;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      text-shadow: 0 0 5px var(--red);
+    }
+
+    h2 {
+      font-size: 2rem;
+      color: var(--red);
+    }
+
+    .about-section p {
+      font-size: 1.05rem;
+      color: var(--gray);
+      max-width: 850px;
+      margin: 1rem auto;
+      text-align: center;
+    }
+
+    .image-slider {
+      overflow: hidden;
+      margin-top: 2rem;
+    }
+
+    .slider-track {
+      display: flex;
+      animation: scroll-left 24s linear infinite;
+      gap: 12px;
+    }
+
+    .slider-track img {
+      width: 200px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 8px;
+      box-shadow: 0 0 8px rgba(255, 255, 255, 0.1);
+    }
+
+    @keyframes scroll-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--red);
+    }
+
+    .footer-icons a {
+      color: var(--gray);
+      margin: 0 12px;
+      font-size: 1.5rem;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: var(--red);
+    }
+
+    footer p {
+      font-size: 0.9rem;
+      color: var(--gray);
+      margin-top: 1rem;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 1s ease;
+    }
+
+    .fade-in.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 768px) {
+      .slider-track {
+        animation: scroll-left-mobile 30s linear infinite;
+      }
+
+      .slider-track img {
+        width: 140px;
+        height: 90px;
+      }
+
+      @keyframes scroll-left-mobile {
+        0% { transform: translateX(0); }
+        100% { transform: translateX(-50%); }
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+  <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('show')">
+    <ion-icon name="menu-outline"></ion-icon>
+  </button>
+  <div class="logo">
+    <img src="SVG logo TB.png" alt="The Balcony On The Track" />
+  </div>
+  <div class="subheading">
+    <a href="https://maps.app.goo.gl/X2X6CGkxuhCrH4QU9" target="_blank">
+      51 Kyalami Boulevard, Kyalami Park, Midrand, 1684
+    </a>
+  </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html" class="active">About</a>
+    <a href="balcony.html">Balcony</a>
+    <a href="track.html">Track</a>
+    <a href="booking.html">Booking</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+  <main>
+    <section class="about-section fade-in"><br><br>
+      <h2>About The Balcony</h2>
+      <p>Perched above the legendary Kyalami Grand Prix Circuit, The Balcony on the Track is a one-of-a-kind venue where world-class cuisine meets motorsport elegance. With panoramic views of the renowned racetrack, our space offers an elevated dining experience for those who appreciate both fine flavour and high-octane passion.</p>
+      <p>Whether you're enjoying a race day from a luxury suite or testing your reflexes in South Africa’s first race simulator arcade of its kind, The Balcony on the Track delivers unforgettable moments at every turn.</p>
+
+      <div class="image-slider" aria-label="Image gallery">
+        <div class="slider-track">
+          <img src="The Track - Reception V2.png" alt="Reception" />
+          <img src="The Track - Bar V3_000.png" alt="Bar scene" />
+          <img src="The Track - Bar V5_001.png" alt="Lounge" />
+          <img src="The Track - Arcade V1_000.png" alt="Arcade" />
+          <img src="The Track - Bar V1_001.png" alt="Cocktail area" />
+          <img src="The Track - Restroom V1.png" alt="Restroom" />
+          <img src="The Track - Reception.png" alt="Entrance" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-icons">
+      <a href="https://www.instagram.com/balconyonthetrack?igsh=cHNsY2kyM3V3dmVj&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.facebook.com/share/1B31THTB2M/?mibextid=wwXIfr"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="mailto:info@balconyonthetrack.co.za"><ion-icon name="mail-outline"></ion-icon></a>
+      <a href="tel:+27111234567"><ion-icon name="call-outline"></ion-icon></a>
+    </div>
+    <p>&copy; 2025 The Balcony on the Track. All rights reserved.</p>
+  </footer>
+
+  <script>
+
+  function toggleMenu() {
+    document.getElementById('main-nav').classList.toggle('show');
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('show');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
+
+

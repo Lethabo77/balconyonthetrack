@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Booking | The Balcony on the Track</title>
+  <link href="https://fonts.googleapis.com/css2?family=Michroma:wght@400;600;700&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <style>
+    :root {
+      --main-red: #e10600;
+      --black: #000;
+      --white: #fff;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Michroma', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
+    header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1rem 2rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.logo img {
+  height: 100px;
+}
+
+.subheading {
+  font-size: 0.9rem;
+  margin: 0.5rem 0;
+}
+
+.subheading a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.subheading a:hover {
+  color: var(--main-red);
+}
+
+nav {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  transition: max-height 0.3s ease;
+}
+
+nav a {
+  color: var(--white);
+  text-decoration: none;
+  font-size: 0.95rem;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--main-red);
+  text-decoration: underline;
+}
+
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: var(--white);
+  position: absolute;
+  right: 1.5rem;
+  top: 1rem;
+  z-index: 2000;
+}
+
+@media (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    overflow: hidden;
+    max-height: 0;
+  }
+
+  nav.show {
+    max-height: 500px;
+  }
+
+  .menu-toggle {
+    display: block;
+  }
+
+  header {
+    align-items: flex-start;
+  }
+}
+
+main {
+  padding-top: 10rem; /* Offset for fixed header */
+}
+
+.booking-container {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 2rem;
+  animation: fadeUp 1.2s ease-out;
+}
+
+@media (max-width: 768px) {
+  .booking-container {
+    padding: 1.5rem 1rem;
+  }
+}
+
+    h1 {
+      text-align: center;
+      color: var(--main-red);
+      margin-bottom: 2rem;
+      text-transform: uppercase;
+      font-size: 2.2rem;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    label {
+      font-size: 0.95rem;
+    }
+
+    input, select {
+      background: #111;
+      color: var(--white);
+      padding: 0.75rem;
+      border: 1px solid #333;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    input:focus, select:focus {
+      border-color: var(--main-red);
+      outline: none;
+    }
+
+    .payment-section {
+      background-color: #111;
+      padding: 1.5rem;
+      border-radius: 10px;
+      margin-top: 3rem;
+    }
+
+    .payment-section h2 {
+      color: var(--main-red);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+    }
+
+    .payment-section p {
+      margin-bottom: 0.5rem;
+    }
+
+    .payment-section label {
+      display: block;
+      margin-top: 1rem;
+    }
+
+    .payment-buttons button {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    footer {
+      background: #111;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: auto;
+    }
+
+    .footer-icons a {
+      color: var(--white);
+      margin: 0 10px;
+      font-size: 1.5rem;
+      transition: color 0.3s;
+    }
+
+    .footer-icons a:hover {
+      color: var(--main-red);
+    }
+
+    #whatsapp-chat {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #25d366;
+      color: white;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 2rem;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 10000;
+    }
+    .payment-buttons button {
+  background-color: var(--main-red);
+  color: var(--white);
+  border: none;
+  padding: 0.85rem 1.2rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-family: 'Michroma', sans-serif;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.payment-buttons button:hover {
+  background-color: #b00000;
+  transform: scale(1.02);
+}
+
+#destinationBtn {
+  background-color: var(--white);
+  color: var(--black);
+}
+
+#destinationBtn:hover {
+  background-color: #ddd;
+  color: var(--black);
+}
+
+  </style>
+</head>
+<body>
+
+  <!-- Replace your current <header> section with this -->
+<header>
+  <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('show')">
+    <ion-icon name="menu-outline"></ion-icon>
+  </button>
+  <div class="logo">
+    <img src="SVG logo TB.png" alt="The Balcony On The Track">
+  </div>
+  <div class="subheading">
+    <a href="https://maps.app.goo.gl/X2X6CGkxuhCrH4QU9" target="_blank">
+      51 Kyalami Boulevard, Kyalami Park, Midrand, 1684
+    </a>
+  </div>
+  <nav id="main-nav">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="balcony.html">Balcony</a>
+    <a href="track.html">Track</a>
+    <a href="booking.html" class="active">Booking</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+  <main>
+  <section class="booking-container">
+    <h1>Book Your Spot</h1>
+    <form>
+      <label for="sector">Choose Experience*</label>
+      <select id="sector" name="sector" required>
+        <option value="">Select experience</option>
+        <option value="track">Track (R250)</option>
+        <option value="balcony">Balcony (R350)</option>
+      </select>
+
+      <label for="date">Select Date*</label>
+      <input type="date" id="date" name="date" required>
+
+      <label for="time">Select Time*</label>
+      <select id="time" name="time" required>
+        <option value="">Select time</option>
+        <option>10:00 AM</option>
+        <option>12:00 PM</option>
+        <option>2:00 PM</option>
+        <option>4:00 PM</option>
+        <option>6:00 PM</option>
+      </select>
+
+      <label for="name">Full Name*</label>
+      <input type="text" id="name" name="name" placeholder="Your full name" required>
+
+      <label for="email">Email*</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required>
+
+      <label for="phone">Phone*</label>
+      <input type="tel" id="phone" name="phone" placeholder="+27 12 345 6789" required>
+    </form>
+
+    <div class="payment-section">
+  <h2>Payment Options</h2>
+  <p><strong>Service:</strong> Shuttle Booking</p>
+  <p><strong>Total:</strong> <span id="totalAmount">R0.00</span></p>
+
+  <label><input type="radio" name="payment" value="payfast" /> Pay Now via PayFast</label>
+  <label><input type="radio" name="payment" value="destination" /> Pay at Destination</label>
+
+  <div class="payment-buttons">
+    <button id="payfastBtn" style="display:none;">Pay Now via PayFast</button>
+    <button id="destinationBtn" style="display:none; background:white; color:black;">Confirm & Pay at Destination</button>
+  </div>
+
+  <!-- ✅ Hidden PayFast Form (submits to your Node backend) -->
+  <form id="payfastForm" action="http://localhost:3000/pay" method="POST">
+    <input type="hidden" name="amount" id="formAmount" value="0.00" />
+    <input type="hidden" name="item_name" id="formItemName" value="Shuttle Booking" />
+  </form>
+</div>
+    </div>
+  </section>
+</main>
+
+
+  <a href="https://wa.me/+27123456789" target="_blank" id="whatsapp-chat" title="Chat with us on WhatsApp">
+    <ion-icon name="chatbubble-ellipses-outline"></ion-icon>
+  </a>
+
+  <footer>
+    <div class="footer-icons">
+      <a href="https://www.instagram.com/balconyonthetrack?igsh=cHNsY2kyM3V3dmVj&utm_source=qr"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.facebook.com/share/1B31THTB2M/?mibextid=wwXIfr"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="mailto:info@balconyonthetrack.co.za"><ion-icon name="mail-outline"></ion-icon></a>
+      <a href="tel:+27111234567"><ion-icon name="call-outline"></ion-icon></a>
+    </div>
+    <p>&copy; 2025 The Balcony on the Track. All rights reserved.</p>
+  </footer>
+
+<script>
+  function toggleMenu() {
+    const nav = document.getElementById("nav-links");
+    nav.classList.toggle("show");
+  }
+
+  const payfastBtn = document.getElementById('payfastBtn');
+  const destinationBtn = document.getElementById('destinationBtn');
+  const sectorSelect = document.getElementById('sector');
+  const totalDisplay = document.getElementById('totalAmount');
+  const payfastForm = document.getElementById('payfastForm');
+  const formAmount = document.getElementById('formAmount');
+  const formItemName = document.getElementById('formItemName');
+
+  // Toggle buttons when payment method is selected
+  document.querySelectorAll('input[name="payment"]').forEach(input => {
+    input.addEventListener('change', function () {
+      if (this.value === 'payfast') {
+        payfastBtn.style.display = 'block';
+        destinationBtn.style.display = 'none';
+      } else {
+        payfastBtn.style.display = 'none';
+        destinationBtn.style.display = 'block';
+      }
+    });
+  });
+
+  // PayFast button: set values and submit to server
+  payfastBtn.addEventListener('click', () => {
+    const sector = sectorSelect.value;
+    let amount = 0;
+
+    if (sector === 'track') amount = 250;
+    if (sector === 'balcony') amount = 350;
+
+    formAmount.value = amount.toFixed(2);
+    formItemName.value = sector === 'balcony' ? 'Balcony Shuttle' : 'Track Shuttle';
+
+    payfastForm.submit();
+  });
+
+  // Pay at Destination button
+  destinationBtn.addEventListener('click', () => {
+    alert("Thank you! Please pay at your destination.");
+  });
+
+  // Update total price display when sector changes
+  sectorSelect.addEventListener('change', () => {
+    const value = sectorSelect.value;
+    let amount = 0;
+
+    if (value === 'track') amount = 250;
+    if (value === 'balcony') amount = 350;
+
+    totalDisplay.textContent = "R" + amount.toFixed(2);
+  });
+</script> 
+</body>
+</html>

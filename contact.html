@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact | The Balcony on the Track</title>
+
+  <!-- Font & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Michroma&display=swap" rel="stylesheet">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+  <style>
+    :root {
+      --main-red: #e10600;
+      --black: #000;
+      --white: #fff;
+      --icon-color: #d7d7d7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Michroma', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      padding: 1rem 2rem;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      backdrop-filter: blur(5px);
+    }
+
+    .logo img {
+      height: 100px;
+    }
+
+    .subheading {
+      font-size: 0.9rem;
+      margin: 0.5rem 0;
+    }
+
+    .subheading a {
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .subheading a:hover {
+      color: var(--main-red);
+    }
+
+    nav {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      transition: max-height 0.3s ease;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover,
+    nav a.active {
+      color: var(--main-red);
+      text-decoration: underline;
+    }
+
+    .menu-toggle {
+      display: none;
+      font-size: 2rem;
+      background: none;
+      border: none;
+      color: var(--white);
+      position: absolute;
+      right: 1.5rem;
+      top: 1rem;
+      z-index: 2000;
+    }
+
+    @media (max-width: 768px) {
+      nav {
+        flex-direction: column;
+        width: 100%;
+        align-items: center;
+        overflow: hidden;
+        max-height: 0;
+      }
+
+      nav.show {
+        max-height: 500px;
+      }
+
+      .menu-toggle {
+        display: block;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+    }
+
+    main {
+      padding-top: 10rem;
+    }
+
+    .contact-hero {
+      text-align: center;
+      padding: 3rem 1rem 1rem;
+    }
+
+    .contact-hero h1 {
+      font-size: 3rem;
+      color: var(--main-red);
+      margin-bottom: 0.8rem;
+    }
+
+    .contact-hero p {
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .contact-section {
+      max-width: 1200px;
+      margin: auto;
+      padding: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .contact-box {
+      flex: 1 1 45%;
+      background: #111;
+      padding: 2rem;
+      border-radius: 10px;
+      border: 1px solid #2a2a2a;
+      min-width: 300px;
+    }
+
+    .contact-box h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      color: var(--main-red);
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+
+    .contact-item ion-icon {
+      font-size: 1.5rem;
+      color: var(--icon-color);
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+
+    input, textarea {
+      padding: 0.9rem;
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: var(--white);
+      font-size: 1rem;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    button {
+      background: var(--main-red);
+      color: #fff;
+      border: none;
+      padding: 0.9rem;
+      font-size: 1rem;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #a00000;
+    }
+
+    .map-container {
+      max-width: 1200px;
+      margin: 2rem auto;
+      padding: 0 2rem;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border-radius: 10px;
+      border: 2px solid var(--main-red);
+    }
+
+    footer {
+      background: #000;
+      padding: 2rem 1rem;
+      text-align: center;
+      border-top: 1px solid #333;
+    }
+
+    .footer-icons a {
+      margin: 0 0.6rem;
+      color: var(--icon-color);
+      font-size: 1.5rem;
+    }
+
+    .footer-icons a:hover {
+      color: var(--main-red);
+    }
+
+    footer p {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    @media (max-width: 768px) {
+      .contact-section {
+        flex-direction: column;
+        padding: 1rem;
+      }
+
+      .contact-box {
+        flex: 1 1 100%;
+      }
+
+      .contact-hero h1 {
+        font-size: 2.2rem;
+      }
+
+      .contact-hero p {
+        font-size: 1rem;
+      }
+
+      iframe {
+        height: 250px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <button class="menu-toggle" onclick="document.getElementById('main-nav').classList.toggle('show')">
+      <ion-icon name="menu-outline"></ion-icon>
+    </button>
+    <div class="logo">
+      <img src="SVG logo TB.png" alt="The Balcony On The Track">
+    </div>
+    <div class="subheading">
+      <a href="https://maps.app.goo.gl/X2X6CGkxuhCrH4QU9" target="_blank">
+        51 Kyalami Boulevard, Kyalami Park, Midrand, 1684
+      </a>
+    </div>
+    <nav id="main-nav">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="balcony.html">Balcony</a>
+      <a href="track.html">Track</a>
+      <a href="booking.html">Booking</a>
+      <a href="contact.html" class="active">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="contact-hero">
+      <h1>Get In Touch</h1>
+      <p>We're here to help — book a session or reach out with any questions.</p>
+    </section>
+
+    <section class="contact-section">
+      <div class="contact-box">
+        <h2>Contact Information</h2>
+        <a class="contact-item" href="https://wa.me/27711234567" target="_blank">
+          <ion-icon name="logo-whatsapp"></ion-icon> +27 71 123 4567
+        </a>
+        <a class="contact-item" href="mailto:info@balconyonthetrack.co.za">
+          <ion-icon name="mail-outline"></ion-icon> info@balconyonthetrack.co.za
+        </a>
+        <a class="contact-item" href="tel:+27111234567">
+          <ion-icon name="call-outline"></ion-icon> +27 11 123 4567
+        </a>
+      </div>
+
+      <div class="contact-box">
+        <h2>Send a Message</h2>
+        <form action="https://formspree.io/f/mblyvyjl" method="POST">
+          <input type="text" name="name" placeholder="Name & Surname" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="phone" placeholder="Phone Number" required>
+          <textarea name="message" placeholder="Your message..." required></textarea>
+          <input type="hidden" name="_redirect" value="https://yourdomain.com/thank-you.html" />
+          <button type="submit">Submit</button>
+        </form>
+      </div>
+    </section>
+
+  <div class="map-container">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3584.8857862096096!2d28.079442175305184!3d-25.98112387721832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e9575479eb7d92b%3A0x9a7e85881e697c8a!2s51%20Kyalami%20Blvd%2C%20Kyalami%20Park%2C%20Midrand%2C%201684%2C%20South%20Africa!5e0!3m2!1sen!2sza!4v1719933727684!5m2!1sen!2sza"
+    width="100%"
+    height="400"
+    style="border:2px solid #e10600; border-radius:10px;"
+    allowfullscreen=""
+    loading="lazy"
+    referrerpolicy="no-referrer-when-downgrade">
+  </iframe>
+</div>
+
+  </main>
+
+  <footer>
+    <div class="footer-icons">
+      <a href="https://www.instagram.com/balconyonthetrack"><ion-icon name="logo-instagram"></ion-icon></a>
+      <a href="https://www.facebook.com"><ion-icon name="logo-facebook"></ion-icon></a>
+      <a href="mailto:info@balconyonthetrack.co.za"><ion-icon name="mail-outline"></ion-icon></a>
+      <a href="tel:+27111234567"><ion-icon name="call-outline"></ion-icon></a>
+    </div>
+    <p>&copy; 2025 The Balcony on the Track. All rights reserved.</p>
+  </footer>
+</body>
+</html>
+
